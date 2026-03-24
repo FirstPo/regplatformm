@@ -1,7 +1,7 @@
 services:
 
   hfkr:
-    image: ghcr.io/xiaolajiaoyyds/regplatformm-kiro:latest
+    image: ghcr.io/firstpo/regplatformm-kiro:latest
     platform: linux/amd64
     container_name: hfkr
     ports:
@@ -22,7 +22,7 @@ services:
     restart: unless-stopped
 
   hfgm:
-    image: ghcr.io/xiaolajiaoyyds/regplatformm-gemini:latest
+    image: ghcr.io/firstpo/regplatformm-gemini:latest
     platform: linux/amd64
     container_name: hfgm
     ports:
@@ -44,7 +44,7 @@ services:
     restart: unless-stopped
 
   hfts:
-    image: ghcr.io/xiaolajiaoyyds/regplatformm-ts:latest
+    image: ghcr.io/firstpo/regplatformm-ts:latest
     platform: linux/amd64
     container_name: hfts
     ports:
@@ -68,7 +68,7 @@ services:
     restart: unless-stopped
 
   hfnp:
-    image: ghcr.io/xiaolajiaoyyds/regplatformm-openai:latest
+    image: ghcr.io/firstpo/regplatformm-openai:latest
     platform: linux/amd64
     container_name: hfnp
     ports:
@@ -91,7 +91,7 @@ services:
     restart: unless-stopped
 
   hfgs:
-    image: ghcr.io/xiaolajiaoyyds/regplatformm-grok:latest
+    image: ghcr.io/firstpo/regplatformm-grok:latest
     platform: linux/amd64
     container_name: hfgs
     ports:
