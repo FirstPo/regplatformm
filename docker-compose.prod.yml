@@ -45,13 +45,9 @@ services:
     env_file:
       - .env
 
-  xray:
-    image: teddysun/xray:latest
-    container_name: xray
-    restart: unless-stopped
-    network_mode: host
-    volumes:
-      - xray-config:/etc/xray:ro
+  # xray: 暂不启用（方案A本地直连不需要，且 teddysun/xray 无arm64镜像）
+  # xray:
+  #   image: teddysun/xray:latest
 
   turnstile-solver:
     build:
