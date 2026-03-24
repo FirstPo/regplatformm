@@ -77,14 +77,17 @@ services:
       SOLVER_THREADS: "2"
       SOLVER_PORT: "5073"
 
-  openai-reg:
-    image: ghcr.io/xiaolajiaoyyds/regplatformm-openai-reg:latest
-    restart: unless-stopped
-    ports:
-      - "5075:5075"
-    environment:
-      OPENAI_REG_PORT: "5075"
-      GPTMAIL_BASE_URL: "https://mail.chatgpt.org.uk"
+  # openai-reg: 源码未开源，macmini 模式下由 hfnp 容器替代，跳过
+  # openai-reg:
+  #   build:
+  #     context: ./services/openai-reg
+  #     dockerfile: Dockerfile
+  #   restart: unless-stopped
+  #   ports:
+  #     - "5075:5075"
+  #   environment:
+  #     OPENAI_REG_PORT: "5075"
+  #     GPTMAIL_BASE_URL: "https://mail.chatgpt.org.uk"
 
   aws-builder-id-reg:
     build:
