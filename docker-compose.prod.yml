@@ -54,7 +54,9 @@ services:
       - xray-config:/etc/xray:ro
 
   turnstile-solver:
-    image: ghcr.io/xiaolajiaoyyds/regplatformm-turnstile-solver:latest
+    build:
+      context: ./services/turnstile-solver
+      dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - "5072:5072"
@@ -64,10 +66,16 @@ services:
       SOLVER_PORT: "5072"
 
   cf-bypass-solver:
-    image: ghcr.io/xiaolajiaoyyds/regplatformm-cf-bypass-solver:latest
+    build:
+      context: ./services/turnstile-solver
+      dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - "5073:5073"
+    environment:
+      SOLVER_BROWSER_TYPE: camoufox
+      SOLVER_THREADS: "2"
+      SOLVER_PORT: "5073"
 
   openai-reg:
     image: ghcr.io/xiaolajiaoyyds/regplatformm-openai-reg:latest
@@ -79,7 +87,9 @@ services:
       GPTMAIL_BASE_URL: "https://mail.chatgpt.org.uk"
 
   aws-builder-id-reg:
-    image: ghcr.io/xiaolajiaoyyds/regplatformm-aws-builder-id-reg:latest
+    build:
+      context: ./services/aws-builder-id-reg
+      dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - "5076:5076"
