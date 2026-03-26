@@ -10,9 +10,6 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 预装 Camoufox 浏览器二进制（构建时完成，避免运行时下载）
-RUN python -c "from camoufox.utils import install; install()"
-
 COPY server.py .
 
 ENV KIRO_REG_PORT=5076
@@ -22,5 +19,5 @@ ENV PYTHONUNBUFFERED=1
 
 EXPOSE 5076
 
-# Xvfb 虚拟显示器 + Python 服务
-CMD ["sh", "-c", "Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp & sleep 1 && exec python -u server.py"]
+# 启动时按需安装 Camoufox（避免远程构建阶段失败）
+CMD ["sh", "-c", "python -c 'from camoufox.utils import install; install()' || true; Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp & sleep 1 && exec python -u server.py"]
